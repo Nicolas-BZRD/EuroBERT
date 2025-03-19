@@ -72,7 +72,7 @@ def load_model(config: Config):
     if config.model.huggingface_id:
         logging.set_verbosity_error()
         model = AutoModelForMaskedLM.from_pretrained(
-            config.model.huggingface_id, return_dict=False
+            config.model.huggingface_id, return_dict=False, trust_remote_code=True
         )
     else:
         if config.model.model_name == "bert":

@@ -26,7 +26,7 @@ class PackTokRecord(TypedDict):
 
 
 def pack_dataset(
-    local_dir: str,
+    input_dir: str,
     output_dir: str,
     block_size: Optional[int] = None,
     val_size: Optional[int] = None,
@@ -37,14 +37,14 @@ def pack_dataset(
 ):
     """Function to pack a dataset into blocks of a fixed size or uniformly distributed sentence length."""
     print("Number of workers:", num_workers)
-    directories = [d.name for d in pathlib.Path(local_dir).iterdir() if d.is_dir()]
+    directories = [d.name for d in pathlib.Path(input_dir).iterdir() if d.is_dir()]
     directories = sorted(directories) or [""]
 
     vals = _get_val_sizes(directories, val_size)
 
     jobs_args = [
         {
-            "local_dir": f"{local_dir}/{d}",
+            "local_dir": f"{input_dir}/{d}",
             "train_dir": f"{output_dir}/train/{d}",
             "val_dir": f"{output_dir}/val/{d}",
             "block_size": block_size,
