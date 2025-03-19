@@ -11,7 +11,6 @@ import numpy as np
 import streaming
 import streaming.base.format.mds
 import streaming.base.util
-import tokenize_dataset
 
 Metadata = dict[str, Any] | list[Any]
 
