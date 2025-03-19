@@ -46,7 +46,7 @@ class TrainConfig:
     save_config: bool = True
 
     # Masking configurations
-    mlm_probability: float = 0.3
+    mlm_probability: float = 0.5
     mask_probability: float = 1.0
     random_probability: float = 0.0
     original_probability: float = 0.0

@@ -1,13 +1,23 @@
-import fire
 import json
+from typing import Any, Dict
+
+import fire
 import streaming
-from typing import Dict, Any
 from transformers import AutoTokenizer
 
+from optimus.dataprocess.tokenize_dataset import Llama3TiktokenTokenizer
 
-def print_sample(index: int, sample: Dict[str, Any], tokenizer: AutoTokenizer) -> None:
+
+def print_sample(index: int, sample: Dict[str, Any], tokenizer, tiktoken: bool) -> None:
+    """Prints a sample from the dataset with its tokens and metadata."""
     tokens = sample["tokens"]
-    text = tokenizer.batch_decode([tokens], skip_special_tokens=False)[0]
+
+    text = (
+        tokenizer.encoding.decode(tokens)
+        if tiktoken
+        else tokenizer.batch_decode([tokens], skip_special_tokens=False)[0]
+    )
+
     metadata = sample["metadata"]
 
     print(f"Sample {index} {'-' * 80}")
@@ -18,25 +28,28 @@ def print_sample(index: int, sample: Dict[str, Any], tokenizer: AutoTokenizer) -
     print(json.dumps(metadata, indent=2))
 
 
-def inspect_dataset(local_dir: str, tokenizer_name: str, num_samples: int = 5) -> None:
+def inspect_dataset(
+    local_dir: str, tokenizer: str, num_samples: int = 5, tiktoken: bool = False
+) -> None:
     """
     Inspect a streaming dataset by printing a few samples.
 
     Args:
         local_dir (str): Dataset directory path.
-        tokenizer_name (str): Tokenizer name or path.
+        tokenizer (str): Tokenizer name or path.
         num_samples (int, optional): Number of samples to print. Defaults to 5.
+        tiktoken (bool, optional): Whether to use the Tiktoken tokenizer. Defaults to False.
     """
-    dataset = streaming.StreamingDataset(
-        local=local_dir,
-        shuffle=False,
-        batch_size=1,
+    dataset = streaming.StreamingDataset(local=local_dir, shuffle=False, batch_size=1)
+
+    tokenizer = (
+        Llama3TiktokenTokenizer(tokenizer)
+        if tiktoken
+        else AutoTokenizer.from_pretrained(tokenizer)
     )
 
-    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-
     for i, sample in enumerate(dataset):
-        print_sample(i, sample, tokenizer)
+        print_sample(i, sample, tokenizer, tiktoken)
         if i >= num_samples - 1:
             break
 

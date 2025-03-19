@@ -194,6 +194,21 @@ def tokenize_dataset(
     tiktoken: bool = False,
     read_files_kwargs: Optional[dict[str, Any]] = None,
 ):
+    """
+    Tokenizes a dataset using the specified tokenizer and processes it in parallel.
+
+    Args:
+        input_dir (str): Path to the input directory containing data files.
+        tokenizer (str): Tokenizer name or path to be used.
+        dataset (str): Dataset module name.
+        output_dir (str, optional): Output directory for tokenized files. Defaults to "output".
+        size_limit (Optional[int | str], optional): Size limit per file. Defaults to "64MB".
+        num_workers (int | str, optional): Number of worker processes or "max". Defaults to 1.
+        head (Optional[int], optional): Number of initial samples to process. Defaults to None.
+        timeout (Optional[int], optional): Timeout for processing. Defaults to None.
+        tiktoken (bool, optional): Whether to use TikToken. Defaults to False.
+        read_files_kwargs (Optional[dict[str, Any]], optional): Additional arguments for file reading. Defaults to None.
+    """
     start = time.time()
 
     file_dir = os.path.dirname(os.path.abspath(__file__))
@@ -213,7 +228,8 @@ def tokenize_dataset(
     ), f"Output directory '{output_dir}' already exists."
 
     print(
-        f"Input directory: {input_dir}\nTokenizer: {tokenizer}\nDataset: {dataset}\nSize limit: {size_limit}\nNum workers: {num_workers}\nTimeout: {timeout}"
+        f"Input directory: {input_dir}\nTokenizer: {tokenizer}\nDataset: {dataset}\n"
+        f"Size limit: {size_limit}\nNum workers: {num_workers}\nTimeout: {timeout}"
     )
 
     inputs = dataset_module.get_files(input_dir, **read_files_kwargs)
