@@ -195,25 +195,27 @@ def tokenize_dataset(
     read_files_kwargs: Optional[dict[str, Any]] = None,
 ):
     start = time.time()
-    file_dir = os.path.dirname(os.path.realpath(__file__))
+
+    file_dir = os.path.dirname(os.path.abspath(__file__))
     dataset_dir = os.path.join(file_dir, "dataset")
+    assert dataset + ".py" in os.listdir(dataset_dir), f"{dataset}.py module not found."
+    dataset_module = importlib.import_module(f"optimus.dataprocess.dataset.{dataset}")
+
     read_files_kwargs = read_files_kwargs or {}
 
-    assert dataset + ".py" in os.listdir(dataset_dir), f"{dataset}.py module not found."
     assert (
-        num_workers != "max" or num_workers > 0
+        num_workers == "max" or num_workers > 0
     ), "num_workers must be greater than 0."
+    num_workers = os.cpu_count() - 1 if num_workers == "max" else num_workers
+
     assert not os.path.exists(
         output_dir
     ), f"Output directory '{output_dir}' already exists."
-
-    num_workers = os.cpu_count() - 1 if num_workers == "max" else num_workers
 
     print(
         f"Input directory: {input_dir}\nTokenizer: {tokenizer}\nDataset: {dataset}\nSize limit: {size_limit}\nNum workers: {num_workers}\nTimeout: {timeout}"
     )
 
-    dataset_module = importlib.import_module(f"dataset.{dataset}")
     inputs = dataset_module.get_files(input_dir, **read_files_kwargs)
     assert inputs, "No data files found in the input directory."
 

@@ -17,6 +17,7 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 dependencies = [
+  "blobfile==3.0.0",
   "einops==0.8.1",
   "fire==0.6.0",
   "ijson==3.3.0",
