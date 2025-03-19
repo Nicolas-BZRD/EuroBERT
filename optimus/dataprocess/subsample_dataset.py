@@ -35,7 +35,7 @@ def manually_create_index(shard_group: list[str], sub_dir: str):
         json.dump(index, f, indent=4)
 
 
-def process_datasets(dataset_path: str, num_shards: int):
+def subsample_dataset(dataset_path: str, num_shards: int):
     """
     Process dataset to split shards into subdirectories and merge indexes.
 
@@ -110,7 +110,7 @@ def main():
     )
 
     args = parser.parse_args()
-    process_datasets(args.dataset_path, args.num_shards)
+    subsample_dataset(args.dataset_path, args.num_shards)
 
 
 if __name__ == "__main__":

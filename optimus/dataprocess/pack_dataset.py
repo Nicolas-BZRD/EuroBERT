@@ -25,7 +25,7 @@ class PackTokRecord(TypedDict):
     metadata: list[Any]
 
 
-def main(
+def pack_dataset(
     local_dir: str,
     output_dir: str,
     block_size: Optional[int] = None,
@@ -279,4 +279,4 @@ def _write_iterable(
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    fire.Fire(pack_dataset)

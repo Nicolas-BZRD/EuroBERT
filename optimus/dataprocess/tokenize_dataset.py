@@ -182,7 +182,7 @@ def _worker(
     return number_tokens
 
 
-def main(
+def tokenize_dataset(
     input_dir: str,
     tokenizer: str,
     dataset: str,
@@ -268,4 +268,4 @@ def main(
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    fire.Fire(tokenize_dataset)

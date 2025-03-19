@@ -18,7 +18,7 @@ def print_sample(index: int, sample: Dict[str, Any], tokenizer: AutoTokenizer) -
     print(json.dumps(metadata, indent=2))
 
 
-def main(local_dir: str, tokenizer_name: str, num_samples: int = 5) -> None:
+def inspect_dataset(local_dir: str, tokenizer_name: str, num_samples: int = 5) -> None:
     """
     Inspect a streaming dataset by printing a few samples.
 
@@ -42,4 +42,4 @@ def main(local_dir: str, tokenizer_name: str, num_samples: int = 5) -> None:
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    fire.Fire(inspect_dataset)
