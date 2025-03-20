@@ -42,3 +42,6 @@ kernel = [
 [project.urls]
 Homepage = "https://github.com/Nicolas-BZRD/EuroBERT"
 Issues = "https://github.com/Nicolas-BZRD/EuroBERT/issues"
+
+[tool.setuptools]
+license-files = ["LICENSE.txt"]
