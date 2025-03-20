@@ -5,6 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "optimus"
 version = "0.9"
+license = { text = "Apache 2.0" }
 authors = [
   { name = "Nicolas Boizard", email = "nicolas.bzrd@gmail.com" },
   { name = "Duarte Alves", email = "duartemalves@tecnico.ulisboa.pt" }
