@@ -27,6 +27,7 @@ dependencies = [
   "pandas==2.2.3",
   "pyarrow==16.0.0",
   "python_dateutil==2.9.0",
+  "tensorboard==2.19.0",
   "tiktoken==0.7.0",
   "torch==2.4.1",
   "transformers==4.49.0",

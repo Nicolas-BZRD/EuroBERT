@@ -16,7 +16,7 @@ The `tokenize_dataset.py` script tokenizes a dataset using a specified tokenizer
 ### Usage
 
 ```bash
-python tokenize_dataset.py --input_dir <path> --tokenizer <path_or_name> --dataset <name> [--output_dir <path>] [--size_limit <value>] [--num_workers <num>] [--head <num>] [--read_files_kwargs <json>] [--timeout <seconds>] [--tiktoken]
+python -m optimus.dataprocess.tokenize_dataset --input_dir <path> --tokenizer <path_or_name> --dataset <name> [--output_dir <path>] [--size_limit <value>] [--num_workers <num>] [--head <num>] [--read_files_kwargs <json>] [--timeout <seconds>] [--tiktoken]
 ```
 
 ### Parameters
@@ -35,7 +35,7 @@ python tokenize_dataset.py --input_dir <path> --tokenizer <path_or_name> --datas
 ### Example
 
 ```bash
-python tokenize_dataset.py --input_dir ./codebagel --tokenizer "meta-llama/Llama-3.1-8B-Instruct" --dataset codeBagel --output_dir ./output --size_limit 100mb --num_workers 4
+python -m optimus.dataprocess.tokenize_dataset --input_dir ./codebagel --tokenizer "meta-llama/Llama-3.1-8B-Instruct" --dataset codeBagel --output_dir ./output --size_limit 100mb --num_workers 4
 ```
 
 This command tokenizes the `codeBagel` dataset stored in `./codebagel` using the `meta-llama/Llama-3.1-8B-Instruct` tokenizer, saves the output in `./output`, splits shards at 100MB, and runs with 4 workers.
@@ -45,7 +45,7 @@ This command tokenizes the `codeBagel` dataset stored in `./codebagel` using the
 For maximum efficiency (up to 2x speedup), use `tiktoken` with a compatible tokenizer and `tokenizer.model` [file](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct/blob/main/original/tokenizer.model):
 
 ```bash
-python tokenize_dataset.py --input_dir ./codebagel --tokenizer ./llama_tokenizer.model --dataset codeBagel --output_dir ./tokenized --size_limit 100mb --num_workers 4 --tiktoken
+python -m optimus.dataprocess.tokenize_dataset --input_dir ./codebagel --tokenizer ./llama_tokenizer.model --dataset codeBagel --output_dir ./tokenized --size_limit 100mb --num_workers 4 --tiktoken
 ```
 
 ---
@@ -57,7 +57,7 @@ The `pack_dataset.py` script packs a dataset into blocks (sentences) of a fixed 
 ### Usage
 
 ```bash
-python pack_dataset.py --local_dir <path> --output_dir <path> [--block_size <int>] [--val_size <int>] [--size_limit <int|str>] [--head <int>] [--num_workers <int>] [--random_size]
+python -m optimus.dataprocess.pack_dataset --local_dir <path> --output_dir <path> [--block_size <int>] [--val_size <int>] [--size_limit <int|str>] [--head <int>] [--num_workers <int>] [--random_size]
 ```
 
 ### Parameters
@@ -74,7 +74,7 @@ python pack_dataset.py --local_dir <path> --output_dir <path> [--block_size <int
 ### Example
 
 ```bash
-python pack_dataset.py --local_dir './tokenized' --output_dir './output_pack' --block_size 2048 --random_size
+python -m optimus.dataprocess.pack_dataset --local_dir './tokenized' --output_dir './output_pack' --block_size 2048 --random_size
 ```
 
 ---
@@ -86,7 +86,7 @@ The `subsample_dataset.py` script processes a dataset to split it into subdirect
 ### Usage
 
 ```bash
-python subsample_dataset.py --dataset_path <path> --num_shards <int>
+python -m optimus.dataprocess.subsample_dataset --dataset_path <path> --num_shards <int>
 ```
 
 ### Parameters
@@ -97,7 +97,7 @@ python subsample_dataset.py --dataset_path <path> --num_shards <int>
 ### Example
 
 ```bash
-python subsample_dataset.py --dataset_path "./tokenized" --num_shards 2
+python -m optimus.dataprocess.subsample_dataset --dataset_path "./tokenized" --num_shards 2
 ```
 
 ---
@@ -109,7 +109,7 @@ The `inspect_dataset.py` script inspects a processed dataset by printing a few s
 ### Usage
 
 ```bash
-python inspect_dataset.py --local_dir <path> --tokenizer <path_or_name> [--num_samples <int>]
+python -m optimus.dataprocess.inspect_dataset --local_dir <path> --tokenizer <path_or_name> [--num_samples <int>]
 ```
 
 ### Parameters
@@ -121,5 +121,5 @@ python inspect_dataset.py --local_dir <path> --tokenizer <path_or_name> [--num_s
 ### Example
 
 ```bash
-python inspect_dataset.py --local_dir './output' --tokenizer "meta-llama/Llama-3.1-8B-Instruct" --num_samples 5
+python -m optimus.dataprocess.inspect_dataset --local_dir './output' --tokenizer "meta-llama/Llama-3.1-8B-Instruct" --num_samples 5
 ```

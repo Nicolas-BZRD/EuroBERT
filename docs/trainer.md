@@ -15,17 +15,23 @@ Whether you're a beginner or an expert, let's get started!
 
 ## 🚀 **Quick Start**
 
-Ready to train EuroBERT? Launch a training session with default settings using this command:
-
+Ready to train EuroBERT ?
+To install the Optimus training library simply run:  
 ```bash
-python main.py python main.py --model_name eurobert --model_size 210m --data_mix_path "./exemples/mix" --batch_size 2 --mlm_probability 0.5 --mask_probability 1   
+pip install git+https://github.com/Nicolas-BZRD/EuroBERT.git
+```
+or, for development purposes, clone the repository and install it in editable mode:
+```bash
+git clone https://github.com/Nicolas-BZRD/EuroBERT.git
+cd EuroBERT
+pip install -e .
 ```
 
-Note: This is an example—adjust the values based on your needs for optimal results!
+You can then launch training with the `python -m optimus.train` package. We additionally provide a complete tutorial for continuous training of EuroBERT to help practitioners with their first training. For extensive training requiring further optimization, feel free to reach us at `nicolas(dot)boizard[at]centralesupelec(dot)fr`.
 
 ## ⚙️ **Configuration**
 
-Customize your training by passing parameters via the command line. Below are the details for each configuration section.
+Customize your training by passing parameters via the command line or config file. Below are the details for each configuration section.
 
 ### 🏋️ **Training Configuration**
 

@@ -33,6 +33,19 @@ cd EuroBERT
 pip install -e .
 ```
 
+## Tutorial
+Before diving further into the Optimus Library, we encourage you to follow the notebook ‘Continuous Pre-Training of EuroBERT-210M with the Optimus Library’ (compatible with Google Scholar), which covers data processing and training setup.
+
+<div style="background-color: #f7f7f7; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; text-align: center; font-family: Arial, sans-serif; margin: 20px auto;">
+
+  <h3 style="font-size: 1.5rem; color: #333;">Continuous Pre-Training of EuroBERT-210M with Optimus Library</h3>
+  
+  <p style="color: #555; font-size: 1rem; margin-bottom: 20px;">Learn how to process data and launch training with the Optimus Library. Compatible with Google Scholar.</p>
+
+  <a href="your-tutorial-link-here" style="text-decoration: none; background-color: #0084EE; color: white; padding: 10px 20px; border-radius: 5px; font-size: 1.1rem;">Go to Tutorial</a>
+
+</div>
+
 ## Data Processing
 
 Optimus provides an efficient pre-processing pipeline with tokenization, packing, subsampling, and inspection utilities. Full details are available in the [data processing documentation](https://github.com/Nicolas-BZRD/EuroBERT/tree/main/optimus/dataprocess). The [`tokenize_dataset.py`](https://github.com/Nicolas-BZRD/EuroBERT/blob/main/optimus/dataprocess/tokenize_dataset.py) script tokenizes a dataset and saves it in an optimized format. The tokenized data can be **sharded** and processed in parallel using multiple workers.
@@ -40,7 +53,7 @@ Optimus provides an efficient pre-processing pipeline with tokenization, packing
 ### Usage
 
 ```bash
-python tokenize_dataset.py --input_dir <path> --tokenizer <path_or_name> --dataset <name> [--output_dir <path>] [--num_workers <num>]
+python -m optimus.dataprocess.tokenize_dataset --input_dir <path> --tokenizer <path_or_name> --dataset <name> [--output_dir <path>] [--num_workers <num>]
 ```
 
 ### Parameters
@@ -55,10 +68,8 @@ python tokenize_dataset.py --input_dir <path> --tokenizer <path_or_name> --datas
 
 Optimus supports a wide range of configurations for different training scenarios. Detailed configuration options are documented in the [training guide](https://github.com/Nicolas-BZRD/EuroBERT/blob/main/docs/trainer.md).
 
-To verify your installation, run a EuroBERT training session with default settings:
-
 ```bash
-python main.py --model_name eurobert --model_size 210m --data_mix_path "./examples/mix" --batch_size 2 --mlm_probability 0.5 --mask_probability 1
+python -m optimus.train --huggingface_id EuroBERT/EuroBERT-210m --data_mix_path <path> --batch_size <int> --mlm_probability <flaot> --mask_probability <int>
 ```
 
 ### Parameters
