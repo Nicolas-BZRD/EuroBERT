@@ -36,15 +36,7 @@ pip install -e .
 ## Tutorial
 Before diving further into the Optimus Library, we encourage you to follow the notebook ‘Continuous Pre-Training of EuroBERT-210M with the Optimus Library’ (compatible with Google Scholar), which covers data processing and training setup.
 
-<div style="background-color: #f7f7f7; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; text-align: center; font-family: Arial, sans-serif; margin: 20px auto;">
-
-  <h3 style="font-size: 1.5rem; color: #333;">Continuous Pre-Training of EuroBERT-210M with Optimus Library</h3>
-  
-  <p style="color: #555; font-size: 1rem; margin-bottom: 20px;">Learn how to process data and launch training with the Optimus Library. Compatible with Google Scholar.</p>
-
-  <a href="your-tutorial-link-here" style="text-decoration: none; background-color: #0084EE; color: white; padding: 10px 20px; border-radius: 5px; font-size: 1.1rem;">Go to Tutorial</a>
-
-</div>
+[Go to Tutorial](https://github.com/Nicolas-BZRD/EuroBERT/tree/main/examples/continuous_pretraining.ipynb)
 
 ## Data Processing
 
