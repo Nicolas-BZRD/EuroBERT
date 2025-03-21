@@ -27,7 +27,7 @@ cd EuroBERT
 pip install -e .
 ```
 
-You can then launch training with the `python -m optimus.train` package. We additionally provide a complete tutorial for continuous training of EuroBERT to help practitioners with their first training. For extensive training requiring further optimization, feel free to reach us at `nicolas(dot)boizard[at]centralesupelec(dot)fr`.
+You can then launch training with the `python -m optimus.train` package. We additionally provide a [complete tutorial for continuous training of EuroBERT](https://github.com/Nicolas-BZRD/EuroBERT/tree/main/examples/continuous_pretraining.ipynb) to help practitioners with their first training. For extensive training requiring further optimization, feel free to reach us at `nicolas(dot)boizard[at]centralesupelec(dot)fr`.
 
 ## ⚙️ **Configuration**
 
