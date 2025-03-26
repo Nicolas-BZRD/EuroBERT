@@ -73,6 +73,12 @@ python -m optimus.train --huggingface_id EuroBERT/EuroBERT-210m --data_mix_path 
 - `mlm_probability` (*float*): Probability of applying masked language modeling.
 - `mask_probability` (*float*): Probability of replacing a masked token.
 
+
+## Evaluation
+
+If you're interested in evaluating pre-trained encoder models, we recommend using the [EncodEval](https://github.com/hgissbkh/EncodEval) library. Developed alongside the Optimus library, it provides a fair and consistent framework for evaluating and comparing encoder models.
+
+
 ## Citation
 
 If you use EuroBERT in your research, please cite our paper:
