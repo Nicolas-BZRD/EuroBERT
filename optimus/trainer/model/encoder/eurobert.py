@@ -51,7 +51,7 @@ eurobert_config = {
     },
     "1b": {
         "vocab_size": 128_256,
-        "embedding_size": 1152,
+        "embedding_size": 1728,
         "num_head": 18,
         "num_kv_head": 6,
         "num_layer": 26,
